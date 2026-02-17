@@ -1,0 +1,13 @@
+services:
+  mcp-client-chat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - GITHUB_TOKEN=${GITHUB_TOKEN}
+    expose:
+      - 8501
+    restart: unless-stopped
+    container_name: mcp-client-chat
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
