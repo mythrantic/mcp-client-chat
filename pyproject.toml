@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "A multi-modal AI chat client with MCP (Model Context Protocol) tool integration."
 readme = "README.md"
 authors = [
-    { name = "valiantlynx", email = "gormerykombo@gmail.com" }
+    { name = "valiantlynx", email = "valiantlynxz@gmail.com" }
 ]
 requires-python = ">=3.13"
 dependencies = [
