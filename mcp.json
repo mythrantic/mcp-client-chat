@@ -1,0 +1,41 @@
+{
+	"servers": {
+		"playwright": {
+			"url": "https://playwright-mcp.valiantlynx.com/mcp",
+			"type": "http"
+		},
+		"svelte": {
+			"type": "http",
+			"url": "https://mcp.svelte.dev/mcp"
+		},
+		"github": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp/"
+		},
+		"task-manager": {
+			"type": "http",
+			"url": "https://task-manager.valiantlynx.com/mcp"
+		},
+		"mcp-neo4j-memory": {
+			"type": "http",
+			"url": "https://mcp-neo4j-memory.valiantlynx.com/mcp"
+		},
+		"mcp-server-chart": {
+			"type": "http",
+			"url": "https://mcp-server-chart.valiantlynx.com/mcp"
+		},
+		"mcp-vision": {
+			"type": "http",
+			"url": "https://mcp-vision.valiantlynx.com/mcp"
+		},
+		"notifier-mcp": {
+			"type": "http",
+			"url": "https://notifier.valiantlynx.com/mcp"
+		},
+		"twitter-mcp": {
+			"type": "http",
+			"url": "https://twitter-mcp.valiantlynx.com/mcp"
+		}
+	},
+	"inputs": []
+}
