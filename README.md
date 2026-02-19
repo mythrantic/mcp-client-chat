@@ -6,6 +6,9 @@ hosted at: https://mcp-client-chat.valiantlynx.com
 
 The chat agent at [agents/chat_agent.py](https://github.com/mythrantic/mcp-client-chat/blob/main/src/mcp_client_chat/agents/chat_agent.py) is made using [machine-core](https://github.com/samletnorge/machine-core). An AI agents orchistration abstraction
 
+<img width="1847" height="892" alt="image" src="https://github.com/user-attachments/assets/c8cad759-f5e0-40a9-abef-c379139ef179" />
+
+
 ## Architecture
 
 This project follows clean architecture principles:
