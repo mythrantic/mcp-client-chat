@@ -1,5 +1,9 @@
 {
 	"servers": {
+		"internet-mcp": {
+			"url": "https://internet-mcp.valiantlynx.com/mcp",
+			"type": "http"
+		},
 		"playwright": {
 			"url": "https://playwright-mcp.valiantlynx.com/mcp",
 			"type": "http"
