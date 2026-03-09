@@ -1334,8 +1334,8 @@ wheels = [
 
 [[package]]
 name = "machine-core"
-version = "0.1.4"
-source = { git = "https://github.com/samletnorge/machine-core.git#2cd40698d2a241e0ac97c8e1d08b33133cb5a25a" }
+version = "0.1.5"
+source = { git = "https://github.com/samletnorge/machine-core.git#59af77f88f2243a741d0ddf9b3b30f5f3bc2fcf6" }
 dependencies = [
     { name = "asyncio" },
     { name = "fastapi" },
