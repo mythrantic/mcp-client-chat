@@ -1182,9 +1182,8 @@ async def process_query_async_streaming(
         }
 
     except Exception as e:
-        logger.error(f"Query processing error: {e}")
         return {
-            "output": f"Error: {str(e)}",
+            "output": f"Stream Error: {str(e)}",
             "tool_calls": [],
             "thoughts": [],
             "thinking": "",
@@ -1209,6 +1208,20 @@ async def process_query_async(
         return {"output": f"Error: {str(e)}", "tool_calls": [], "thoughts": []}
 
 
+def _reset_mcp_toolsets(agent: ChatAgent):
+    """Reset MCP toolset internal async state for the current event loop.
+
+    MCPServer objects hold an asyncio.Lock (_enter_lock) that is bound to the
+    event loop on which it was created.  Since process_query() creates a fresh
+    event loop for every request, the old lock becomes invalid.  Calling
+    __post_init__() re-creates the lock (and resets _running_count /
+    _exit_stack) so the toolsets work correctly on the new loop.
+    """
+    for toolset in getattr(agent, "toolsets", []):
+        if hasattr(toolset, "__post_init__"):
+            toolset.__post_init__()
+
+
 def process_query(
     agent: ChatAgent,
     query: str,
@@ -1219,6 +1232,12 @@ def process_query(
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     try:
+        # Reset MCP toolset async state (locks, streams) so they work on this
+        # new event loop.  Without this, the asyncio.Lock inside each
+        # MCPServer is still bound to the previous (now-closed) loop, causing
+        # "Session terminated" / McpError on the first request.
+        _reset_mcp_toolsets(agent)
+
         if st.session_state.streaming_enabled:
             result = loop.run_until_complete(
                 process_query_async_streaming(agent, query, image_paths, container)
@@ -1246,6 +1265,7 @@ def get_server_info(agent: ChatAgent):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     try:
+        _reset_mcp_toolsets(agent)
         result = loop.run_until_complete(get_server_info_async(agent))
         return result
     finally:
