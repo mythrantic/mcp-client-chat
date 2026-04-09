@@ -1218,8 +1218,10 @@ def _reset_mcp_toolsets(agent: ChatAgent):
     _exit_stack) so the toolsets work correctly on the new loop.
     """
     for toolset in getattr(agent, "toolsets", []):
-        if hasattr(toolset, "__post_init__"):
-            toolset.__post_init__()
+        # Unwrap ToolFilterWrapper to reach the underlying MCPServer
+        inner = getattr(toolset, "wrapped_toolset", toolset)
+        if hasattr(inner, "__post_init__"):
+            inner.__post_init__()
 
 
 def process_query(
